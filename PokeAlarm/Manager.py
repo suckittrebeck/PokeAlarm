@@ -234,7 +234,7 @@ class Manager(object):
                         'active', alarm, "Alarm objects in file.")) is True:
                     self.set_optional_args(str(alarm))
                     self.__alarms.append(Alarms.alarm_factory(
-                        alarm, max_attempts, random.choice(self.__google_key)))
+                        alarm, max_attempts, self.__google_key))
                 else:
                     log.debug("Alarm not activated: {}".format(alarm['type'])
                               + " because value not set to \"True\"")
