@@ -12,6 +12,7 @@ from datetime import datetime, timedelta
 import gevent
 # 3rd Party Imports
 import gipc
+import random
 
 # Local Imports
 import Alarms
@@ -39,15 +40,10 @@ class Manager(object):
         self.__debug = debug
 
         # Get the Google Maps API
-        self.__google_key = None
+        self.__google_key = google_key
         self.__loc_service = None
-        if str(google_key).lower() != 'none':
-            self.__google_key = google_key
-            self.__loc_service = location_service_factory(
-                "GoogleMaps", google_key, locale, units)
-        else:
-            log.warning("NO GOOGLE API KEY SET - Reverse Location and"
-                        + " Distance Matrix DTS will NOT be detected.")
+        self.__loc_service = location_service_factory(
+            "GoogleMaps", self.__google_key, locale, units)
 
         self.__locale = Locale(locale)  # Setup the language-specific stuff
         self.__units = units  # type of unit used for distances
@@ -238,7 +234,7 @@ class Manager(object):
                         'active', alarm, "Alarm objects in file.")) is True:
                     self.set_optional_args(str(alarm))
                     self.__alarms.append(Alarms.alarm_factory(
-                        alarm, max_attempts, self.__google_key))
+                        alarm, max_attempts, random.choice(self.__google_key)))
                 else:
                     log.debug("Alarm not activated: {}".format(alarm['type'])
                               + " because value not set to \"True\"")
