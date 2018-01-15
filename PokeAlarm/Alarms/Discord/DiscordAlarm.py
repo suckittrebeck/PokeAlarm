@@ -33,7 +33,7 @@ class DiscordAlarm(Alarm):
                 "monsters/<mon_id_3>_<form_id_3>.png"),
             'title': "<address> (Google Maps)",
             'url': "<gmaps>",
-            'body': "**#<mon_id>** <mon_name><gender>\n**Weather Boost:** <weather>\n\n**Ends:** <24h_time>\n**Time Left:** <time_left>"
+            'body': "**#<mon_id>** <mon_name><gender>\n**Weather Boost:** <weather_emoji> <weather>\n\n**Ends:** <24h_time>\n**Time Left:** <time_left>"
         },
         'pokestop': {
             'username': "Pokestop",
@@ -56,7 +56,7 @@ class DiscordAlarm(Alarm):
         'egg': {
             'username': "Level <egg_lvl> Egg",
             'content': "In <geofence>\nHatches: <24h_hatch_time>\n\n[Apple Maps](<applemaps>)\n",
-            'icon_url': get_image_url("<gym_image>"),
+            'icon_url': "<gym_image>",
             'avatar_url': get_image_url("eggs/<egg_lvl>.png"),
             'title': "<address> (Google Maps)",
             'url': "<gmaps>",
@@ -65,11 +65,11 @@ class DiscordAlarm(Alarm):
         'raid': {
             'username': "<mon_name> level <raid_lvl> raid!",
             'content': "In <geofence>\nEnds: <24h_raid_end>\n\n[Apple Maps](<applemaps>)\n",
-            'icon_url': get_image_url("<gym_image>"),
+            'icon_url': ("<gym_image>"),
             'avatar_url': get_image_url("monsters/<mon_id_3>_000.png"),
             'title': "Level <raid_lvl> raid is available against <mon_name>!",
             'url': "<gmaps>",
-            'body': "**#<mon_id>** <mon_name>\n**Gym:** <gym_name>\n**Located in:** <geofence>\n**Moves:** <quick_move> / <charge_move>\n\n**Ends:** <24h_raid_end>\n**Time Left:** <raid_time_left>"
+            'body': "**#<mon_id>** <mon_name>\n**Gym:** <gym_name>\n**Located in:** <geofence>\n**Moves:** <quick_move> / <charge_move>\n**Weather Boost:** <weather_emoji> <weather>\n\n**Ends:** <24h_raid_end>\n**Time Left:** <raid_time_left>"
         },
         'weather': {
             'username': "Weather",
