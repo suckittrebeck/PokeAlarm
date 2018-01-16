@@ -43,7 +43,7 @@ class Manager(object):
         self.__google_key = itertools.cycle(google_key)
         self.__loc_service = None
         self.__loc_service = location_service_factory(
-            "GoogleMaps", next(self.__google_key), locale, units)
+            "GoogleMaps", self.__google_key, locale, units)
 
         self.__locale = Locale(locale)  # Setup the language-specific stuff
         self.__units = units  # type of unit used for distances
