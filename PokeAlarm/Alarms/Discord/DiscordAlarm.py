@@ -3,6 +3,7 @@ import logging
 import requests
 
 # 3rd Party Imports
+import itertools
 
 # Local Imports
 from PokeAlarm.Alarms import Alarm
@@ -97,7 +98,7 @@ class DiscordAlarm(Alarm):
             settings.pop('disable_embed', "False"))
         self.__avatar_url = settings.pop('avatar_url', "")
         self.__map = settings.pop('map', {})
-        self.__static_map_key = static_map_key
+        self.__static_map_key = itertools.cycle(static_map_key)
 
         # Set Alert Parameters
         self.__pokemon = self.create_alert_settings(
@@ -155,7 +156,8 @@ class DiscordAlarm(Alarm):
             'title': settings.pop('title', default['title']),
             'url': settings.pop('url', default['url']),
             'body': settings.pop('body', default['body']),
-            'map': static_map
+            'map': get_static_map_url(
+                settings.pop('map', self.__map), next(self.__static_map_key))
         }
 
         reject_leftover_parameters(settings, "'Alert level in Discord alarm.")
