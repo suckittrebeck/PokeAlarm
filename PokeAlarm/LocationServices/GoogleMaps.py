@@ -3,7 +3,7 @@ import logging
 import traceback
 # 3rd Party Imports
 import googlemaps
-import random
+import itertools
 # Local Imports
 
 log = logging.getLogger('LocService')
@@ -17,7 +17,7 @@ class GoogleMaps(object):
 
         self.__locale = locale  # Language to use for Geocoding results
         self.__units = units  # imperial or metric
-        self.__google_key = api_key
+        self.__google_key = itertools.cycle(api_key)
 
         # For Reverse Location API
         self.__reverse_location = False
@@ -47,7 +47,7 @@ class GoogleMaps(object):
     def get_location_from_name(self, location_name):
         try:
             self.__client = googlemaps.Client(
-                key=random.choice(self.__google_key), timeout=3, retry_timeout=5)
+                key=next(self.__google_key), timeout=3, retry_timeout=5)
             result = self.__client.geocode(
                 location_name, language=self.__locale)
             # Get the first (most likely) result
@@ -83,7 +83,7 @@ class GoogleMaps(object):
         }
         try:
             self.__client = googlemaps.Client(
-                key=random.choice(self.__google_key), timeout=3, retry_timeout=5)
+                key=next(self.__google_key), timeout=3, retry_timeout=5)
             result = self.__client.reverse_geocode(
                 location, language=self.__locale)[0]
             loc = {}
@@ -134,7 +134,7 @@ class GoogleMaps(object):
         data = {'walk_dist': "unknown", 'walk_time': "unknown"}
         try:
             self.__client = googlemaps.Client(
-                key=random.choice(self.__google_key), timeout=3, retry_timeout=5)
+                key=next(self.__google_key), timeout=3, retry_timeout=5)
             result = self.__client.distance_matrix(
                 origin, dest, mode='walking',
                 units=self.__units, language=self.__locale)
@@ -166,7 +166,7 @@ class GoogleMaps(object):
         data = {'bike_dist': "unknown", 'bike_time': "unknown"}
         try:
             self.__client = googlemaps.Client(
-                key=random.choice(self.__google_key), timeout=3, retry_timeout=5)
+                key=next(self.__google_key), timeout=3, retry_timeout=5)
             result = self.__client.distance_matrix(
                 origin, dest, mode='bicycling',
                 units=self.__units, language=self.__locale)
@@ -198,7 +198,7 @@ class GoogleMaps(object):
         data = {'drive_dist': "unknown", 'drive_time': "unknown"}
         try:
             self.__client = googlemaps.Client(
-                key=random.choice(self.__google_key), timeout=3, retry_timeout=5)
+                key=next(self.__google_key), timeout=3, retry_timeout=5)
             result = self.__client.distance_matrix(
                 origin, dest, mode='driving',
                 units=self.__units, language=self.__locale)
