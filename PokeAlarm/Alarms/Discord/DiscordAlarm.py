@@ -28,14 +28,14 @@ class DiscordAlarm(Alarm):
     _defaults = {
         'pokemon': {
             'username': "<mon_name>",
-            'content': "Ends @ <24h_time> (<time_left>)\n\n[Apple Maps](<applemaps>)\n",
+            'content': "",
             'icon_url': get_image_url(
                 "monsters/<mon_id_3>_<form_id_3>.png"),
             'avatar_url': get_image_url(
                 "monsters/<mon_id_3>_<form_id_3>.png"),
-            'title': "<address> (Google Maps)",
+            'title': "A wild <mon_name> has appeared!",
             'url': "<gmaps>",
-            'body': "**#<mon_id>** <mon_name><gender>\n**Weather Boost:** <weather_emoji> <weather>\n\n**Ends:** <24h_time>\n**Time Left:** <time_left>"
+            'body': "Available until <24h_time> (<time_left>)."
         },
         'pokestop': {
             'username': "Pokestop",
@@ -56,22 +56,24 @@ class DiscordAlarm(Alarm):
             'body': "It is now controlled by <new_team>."
         },
         'egg': {
-            'username': "Level <egg_lvl> Egg",
-            'content': "In <geofence>\nHatches: <24h_hatch_time>\n\n[Apple Maps](<applemaps>)\n",
+            'username': "Egg",
+            'content': "",
             'icon_url': "<gym_image>",
             'avatar_url': get_image_url("eggs/<egg_lvl>.png"),
-            'title': "<address> (Google Maps)",
+            'title': "Raid is incoming!",
             'url': "<gmaps>",
-            'body': "**Gym:** <gym_name>\n**Located in:** <geofence>\n\n**Hatches:** <24h_hatch_time>\n**Ends:** <24h_raid_end>"
+            'body': "Raid is incoming!"
+                    "<24h_hatch_time> (<hatch_time_left>)."
         },
         'raid': {
-            'username': "<mon_name> level <raid_lvl> raid!",
-            'content': "In <geofence>\nEnds: <24h_raid_end>\n\n[Apple Maps](<applemaps>)\n",
+            'username': "Raid!",
+            'content': "",
             'icon_url': ("<gym_image>"),
             'avatar_url': get_image_url("monsters/<mon_id_3>_000.png"),
-            'title': "<address> (Google Maps)",
+            'title': "Level <raid_lvl> Raid is available against <mon_name>!",
             'url': "<gmaps>",
-            'body': "**#<mon_id>** <mon_name>\n**Gym:** <gym_name>\n**Located in:** <geofence>\n**Moves:** <quick_move> / <charge_move>\n**Weather Boost:** <weather_emoji> <weather>\n\n**Ends:** <24h_raid_end>\n**Time Left:** <raid_time_left>"
+            'body': "The raid is available until "
+                    "<24h_raid_end> (<raid_time_left>)."
         },
         'weather': {
             'username': "Weather",
