@@ -62,7 +62,7 @@ class DiscordAlarm(Alarm):
             'avatar_url': get_image_url("eggs/<egg_lvl>.png"),
             'title': "Raid is incoming!",
             'url': "<gmaps>",
-            'body': "Raid is incoming!"
+            'body': "A level <egg_lvl> raid will hatch at "
                     "<24h_hatch_time> (<hatch_time_left>)."
         },
         'raid': {
@@ -70,7 +70,7 @@ class DiscordAlarm(Alarm):
             'content': "",
             'icon_url': ("<gym_image>"),
             'avatar_url': get_image_url("monsters/<mon_id_3>_000.png"),
-            'title': "Level <raid_lvl> Raid is available against <mon_name>!",
+            'title': "Level <raid_lvl> raid is available against <mon_name>!",
             'url': "<gmaps>",
             'body': "The raid is available until "
                     "<24h_raid_end> (<raid_time_left>)."
